@@ -1,5 +1,5 @@
 'use strict'
-const UserService = require('../services/UserService')
+const UserService = require('../service/UserService')
 class UserController{
     static async createUserController(req, res, next){
         try{

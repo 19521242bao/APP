@@ -1,12 +1,7 @@
-const express = require('express');
+const express = require("express");
 const route = express.Router();
-const UserController = require('../controller/UserController');
-route.get('/SignUp',(req,res,next)=>{
-    res.render("../views/SignUp",{message:""});
-});
-route.get('/SignIn',(req,res,next)=>{
-    res.render("../views/SignIn",{message:""});
-})
-route.post('/SignUp',UserController.createUserController);
-route.post('/SignIn',UserController.loginController);
+const UserController = require("../Controller/UserController");
+route.post("/",UserController.createUserController);
+route.post("/login",UserController.loginController);
+route.get("/:idUser",UserController.getUserInfoController);
 module.exports = route;
