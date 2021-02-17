@@ -12,15 +12,15 @@ class UserService{
             let data = req.body;
             let insertData = {
                 UserId: uuid.v4(),
-                Username:data.username,
-                Pass:bcrypt.hashSync(data.pass,10),
+                Username:data.Username,
+                Pass:bcrypt.hashSync(data.Pass,10),
                 Fullname:data.Fullname,
                 UserAddress:data.UserAddress,
                 Birth:data.Birth,
                 Gmail:data.Gmail,
                 Created_at: new Date()
             }
-            await querryBuilder("Users").insert(insertData);
+            await querryBuilder("users").insert(insertData);
             return "Sign up success";
         }catch(e){
             console.log(e);
@@ -29,7 +29,7 @@ class UserService{
     static async loginService(req,res,next){
         try{
             let data = req.body;
-            let user = await querryBuilder("users").select().where("username",data.username).first();
+            let user = await querryBuilder("users").select().where("Username",data.Username).first();
            
         if(!data.username ||!bcrypt.compareSync(data.pass,user.Pass)){
             return "Sai tên đăng nhập hoặc mật khẩu";

@@ -1,4 +1,3 @@
-
 const route = require("express").Router();
 const BillController = require("../Controller/BillController");
 route.post("/",BillController.addBillController);

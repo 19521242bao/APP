@@ -7,14 +7,13 @@ class ProductService{
         try{
         let data = req.body;
         let insertData = {
-            idFood:uuid.v4(),
-            idCategory:data.idCate,
-            nameFood:data.nameFood,
+            id:uuid.v4(),
+            idCategory:data.idCategory,
+            name:data.name,
             price:data.price,
-            foodAdress:data.address,
             image:data.image
         }
-        await querryBuilder("Food").insert(insertData);
+        await querryBuilder("Shoes").insert(insertData);
         return "Add product success";
         }catch(e){
             console.log(e);
@@ -23,7 +22,7 @@ class ProductService{
     static async showFoodByCateService(req,res,next){
         try{
             let param = req.params.idCate;
-            let data = await querryBuilder("Food").where("idCategory",param).select();
+            let data = await querryBuilder("Shoes").where("idCategory",param).select();
             return data;
         }catch(e){
             console.log(e);
@@ -31,7 +30,7 @@ class ProductService{
     }
     static async showFoodService(req,res,next){
         try{
-            let data = await querryBuilder("Food").select();
+            let data = await querryBuilder("Shoes").select();
             return data;
         }catch(e){
             console.log(e)
@@ -40,20 +39,12 @@ class ProductService{
     static async searchFoodService(req,res,next){
         try{
             let require = req.querry;
-            let data = await querryBuilder("Food").where("nameFood",require.namefood).select();
+            let data = await querryBuilder("Shoes").where("name",require.namefood).select();
             return data;
         }catch(e){
             console.log(e);
         }
     }
-    static async searchAddressService(req,res,next){
-        try{
-            let require = req.querry;
-            let data = await querryBuilder("Food").where("foodAddress",require.address).select();
-            return data;
-        }catch(e){
-            console.log(e);
-        }
-    }
+
 }
 module.exports = ProductService;

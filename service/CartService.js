@@ -7,7 +7,7 @@ class CartService{
             let data = req.body;
             let insertData = {
                 idCart:uuid.v4(),
-                nameFood:data.name,
+                nameShoes:data.name,
                 price:data.price,
                 image:data.image,
                

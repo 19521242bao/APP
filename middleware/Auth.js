@@ -1,16 +1,22 @@
 'use strict'
-const jwt=require("jsonwebtoken");
-const JWT_SECRET_KEY="mysecretkey"
-module.exports=async(req,res,next)=>{
+const jwt = require("jsonwebtoken");
+const JWT_SECRET_KEY = "mysecretkey"
+module.exports = async (req,res,next) =>{
     let token = req.header("Authorization").replace('Bearer ','');
-    let checktoken=jwt.verify(token,JWT_SECRET_KEY);
+    let checkToken = jwt.verify(token,JWT_SECRET_KEY);
+    console.log(checkToken);
     try{
-        if(!checktoken)
-            res.status(200).json("you nee account to  use");
+         if(!checkToken){
+           res.status(200).json("You need account to use this function");
+        }
         else{
             next();
         }
     }catch(e){
-        res.status(200).json("you nee account to  use");
+        console.log(e);
+        res.status(200).json("You need account to use this function");
     }
 }
+     
+    
+       
